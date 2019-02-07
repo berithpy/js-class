@@ -1,0 +1,21 @@
+<script>
+  var holaString = "hola";
+  let number = 0;
+  const array = [0, 1, 2];
+  const chauString = "chau";
+  
+  function increaseCounter() {
+    number+=1
+    document.getElementById("numberElement").innerHTML = number;
+    checkNumber();
+  }
+  function checkNumber() {
+    if (number == 9) {
+    console.log(holaString);
+    } else {
+    console.log(chauString);
+    }
+  }
+</script>
+<h1>the value for number is: <span id="numberElement"></span></h1>
+<button type="button" onclick="increaseCounter();">Increase number</button>
