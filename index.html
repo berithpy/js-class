@@ -9,12 +9,13 @@
     number+=1
     document.getElementById("numberElement").innerHTML = number;
     checkNumber();
+    document.getElementById("stringElement").innerHTML = string;
   }
   function checkNumber() {
     if (number == 9) {
-    console.log(holaString);
+    string = holaString;
     } else {
-    console.log(chauString);
+    string = chauString;
     }
   }
 </script>
