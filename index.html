@@ -4,21 +4,43 @@
   const array = [0, 1, 2];
   const chauString = "chau";
   let string = "";
-  
+
   function increaseCounter() {
-    number+=1
+    number += 1
     document.getElementById("numberElement").innerHTML = number;
     checkNumber();
     document.getElementById("stringElement").innerHTML = string;
   }
+
   function checkNumber() {
     if (number == 9) {
-    string = holaString;
+      string = holaString;
     } else {
-    string = chauString;
+      string = chauString;
+    }
+  }
+
+  enabled = false;
+  function toggleTimer() {
+    button = document.getElementById("timerElement")
+    enabled = !enabled;
+    if (enabled) {
+      button.innerHTML = "Disable timer";
+    } else {
+      button.innerHTML = "Enable timer";
+    }
+  }
+
+  var timer = window.setInterval(timerCallback, 1000);
+
+  function timerCallback() {
+    if (enabled) {
+      // Do something each second.
     }
   }
 </script>
+
 <h1>the value for number is: <span id="numberElement"></span></h1>
 <h1>the string is: <span id="stringElement"></span></h1>
 <button type="button" onclick="increaseCounter();">Increase number</button>
+<button type="button" onclick="toggleTimer();" id="timerElement" value="meme"></button>
