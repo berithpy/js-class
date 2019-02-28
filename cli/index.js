@@ -10,7 +10,8 @@ Necesitamos
 var readlineSync = require('readline-sync');
 
 function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
+  maxC = max + 1
+  return Math.floor(Math.random() * (maxC - min)) + min;
 }
 
 var limite = readlineSync.question('Cual es el rango de numeros entre los que quieres elegir? ');
