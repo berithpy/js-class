@@ -9,5 +9,17 @@ Necesitamos
 */
 var readlineSync = require('readline-sync');
 
-var userName = readlineSync.question('May I have your name? ');
-console.log('Hi ' + userName + '!');
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+var limite = readlineSync.question('Cual es el rango de numeros entre los que quieres elegir? ');
+var numeroAelegir = readlineSync.question('Elige un numero entre 0 y ' + limite + ' ');
+console.log(numeroAelegir); 
+var numeroAdivinado = getRandomInt(0,limite);
+
+if (numeroAdivinado==numeroAelegir) {
+  console.log('Adivinaste bitch 💅');
+} else {
+  console.log('No has adivinado, el numero correcto es: '+ numeroAdivinado);
+};
