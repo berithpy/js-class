@@ -1,6 +1,9 @@
-let hundreds = [];
-for (let i = 0; i < 100; i++) {
-    hundreds.push(i);
+/* 
+Adivinador de numero de 0 a n
 
-}
-console.log(hundreds);
+La maquina elige un numero de 0 a n y el usuario intenta adivinar
+
+Necesitamos 
+* Un generador de numeros al azar de 0 a n
+* Una manera de manejar el input del usuario
+*/
