@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-console-input": "^1.1.1"
+    "readline-sync": "^1.4.9"
   }
 }

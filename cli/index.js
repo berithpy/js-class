@@ -7,3 +7,7 @@ Necesitamos
 * Un generador de numeros al azar de 0 a n
 * Una manera de manejar el input del usuario
 */
+var readlineSync = require('readline-sync');
+
+var userName = readlineSync.question('May I have your name? ');
+console.log('Hi ' + userName + '!');
