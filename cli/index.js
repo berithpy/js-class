@@ -7,17 +7,16 @@ Necesitamos
 * Un generador de numeros al azar de 0 a n
 * Una manera de manejar el input del usuario
 */
-var readlineSync = require('readline-sync');
+const readlineSync = require('readline-sync');
 
 function getRandomInt(min, max) {
-  maxC = max + 1
+  let maxC = max + 1
   return Math.floor(Math.random() * (maxC - min)) + min;
 }
 
-var limite = readlineSync.question('Cual es el rango de numeros entre los que quieres elegir? ');
-var numeroAelegir = readlineSync.question('Elige un numero entre 0 y ' + limite + ' ');
-console.log(numeroAelegir); 
-var numeroAdivinado = getRandomInt(0,limite);
+const limite = Number(readlineSync.question('Cual es el rango de numeros entre los que quieres elegir? '));
+const numeroAelegir = Number(readlineSync.question('Elige un numero entre 0 y ' + limite + ' '));
+const numeroAdivinado = getRandomInt(0,limite);
 
 if (numeroAdivinado==numeroAelegir) {
   console.log('Adivinaste bitch 💅');
