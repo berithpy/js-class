@@ -21,8 +21,17 @@ function multiplicación(na,nb) {
     return na*nb
 }
 
+function resta (na,nb){
+    return na-nb
+}
+
 menu();
+
 resultadoSuma = suma(4,7);
 console.log(resultadoSuma);
-resultadoMultiplicación = multiplicación(na*nb);
+
+resultadoMultiplicación = multiplicación(2,6);
 console.log(resultadoMultiplicación);
+
+resultadoResta = resta(10,7);
+console.log(resultadoResta);
