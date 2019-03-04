@@ -17,6 +17,12 @@ function suma(na,nb){
     return na+nb
 }
 
+function multiplicación(na,nb) {
+    return na*nb
+}
+
 menu();
 resultadoSuma = suma(4,7);
 console.log(resultadoSuma);
+resultadoMultiplicación = multiplicación(na*nb);
+console.log(resultadoMultiplicación);
