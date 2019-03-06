@@ -90,13 +90,13 @@ function sumaWhile(array){
     return suma
 }
 
-function sumaRecursion(array, suma=0, contador=0){
-    if (contador>array.length){
+function sumaRecursion(array, suma=0,contador=0){
+    if (contador>=array.length){
         return suma
     }
     suma += array[contador];
     contador++;
-    sumaRecursion(array, suma, contador);
+    return sumaRecursion(array, suma, contador);
 }
 
-sumaRecursion([1,2,3])
+console.log(sumaRecursion([1,2,3]))
