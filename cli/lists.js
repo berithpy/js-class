@@ -175,8 +175,8 @@ function selectionSort(array) {
             }
         }
         temp = array[min];
-        array[min] = array[i];
-        array[i] = temp;
+            array[min] = array[i];
+            array[i] = temp;
     }
     return array;
 }
@@ -184,5 +184,17 @@ function selectionSort(array) {
 var array1 = [8, 5, 3, 4];
 console.log(selectionSort(array1))
 
+function insertionSort (array){
+    for (let i = 0; i < array.length; i++) {
+        j = i;
+            for (j=i;  j > 0 && array[j-1]>array[j]; j--) 
+            {
+                temp = array[j];
+                array[j] = array[j-1];
+                array[j-1] = temp;   
+            }
+    }return array
+}
 
+console.log(insertionSort(array1)); 
 
