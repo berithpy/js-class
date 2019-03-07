@@ -198,3 +198,20 @@ function insertionSort (array){
 
 console.log(insertionSort(array1)); 
 
+/*Escribe una funcion que toma una lista de strings e imprime linea por linea en un marco rectangular,
+ por ejemplo, para la lista ["Hello", "World", "in", "a", "frame"] se imprime:*/
+
+
+function saveLongestLength(array){
+    let longerArrayLength = 0;
+    for (let i = 0; i < array.length; i++) {
+       if(array[i].length>array[i+1].length){
+            longerArrayLength = array[i].length;
+       } else {
+            longerArrayLength = array[i+1].length;           
+       }
+    }return longerArrayLength
+}
+let arrayStrings = ["LongerString", "ShortStr"];
+console.log(saveLongestLength(arrayStrings));
+
