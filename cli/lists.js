@@ -181,8 +181,18 @@ function selectionSort(array) {
     return array;
 }
 
+
+
+function insertSort(array) {
+    for (let pos1 = 0; pos1 < array.length; pos1++) {
+        for (let pos2 = pos1; pos2 >= 0 && array[pos2-1] > array[pos2]; pos2--) {
+            let variableTemporal = array[pos2-1];
+            array[pos2-1] = array[pos2];
+            array[pos2] = variableTemporal;
+        }
+        
+    }
+    return array;
+}
 var array1 = [8, 5, 3, 4];
-console.log(selectionSort(array1))
-
-
-
+console.log(insertSort(array1))
