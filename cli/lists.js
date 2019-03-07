@@ -181,8 +181,21 @@ function selectionSort(array) {
     return array;
 }
 
+function insertionSort (items) {
+    for (var i = 0; i < items.length; i++) {
+      let value = items[i];
+      // almacena el valor acutal para poder ubicarse en el lugar correcto.
+      for (var j = i - 1; j > -1 && items[j] > value; j--) {
+        // itera por los items del array ordenado(del item actual al inicio)
+        // copia cada item al siguiente lugar
+        items[j + 1] = items[j];
+      }
+      // el ultimo item deberia ahora ser el valor del que queda
+      items[j + 1] = value;
+    }
+  
+    return list
+  }
+
 var array1 = [8, 5, 3, 4];
-console.log(selectionSort(array1))
-
-
-
+console.log(insertionSort(array1))
