@@ -204,14 +204,34 @@ console.log(insertionSort(array1));
 
 function saveLongestLength(array){
     let longerArrayLength = 0;
-    for (let i = 0; i < array.length; i++) {
-       if(array[i].length>array[i+1].length){
+    for (let i = 0; i < array.length-1; i++) {
+       if(array[i].length>longerArrayLength){
             longerArrayLength = array[i].length;
-       } else {
-            longerArrayLength = array[i+1].length;           
        }
     }return longerArrayLength
 }
-let arrayStrings = ["LongerString", "ShortStr"];
+let arrayStrings = ["LongerString", "ShortStr","nasfiuasoifbgoasifbgiasbgoiasfbg","abc","defg"];
 console.log(saveLongestLength(arrayStrings));
 
+let x = saveLongestLength(arrayStrings);
+
+//Agrega asteriscos y espacios
+function editStringInArray(array){
+    for (let i = 0; i < array.length-1; i++) {
+        if (x == array[i].length) {
+            array[i] = "*" + array[i] + "*";
+            console.log(array[i]);
+        } else if(x > array[i].length){
+           let difference = x - array[i].length;
+                for(j = 0; j < difference - 2;j++){
+                    array[j]+= " ";
+                }
+            array[i]="*"+array[i]+"*"
+            console.log(array[i]);
+        }
+        
+    }
+
+}
+
+console.log(editStringInArray(arrayStrings));
