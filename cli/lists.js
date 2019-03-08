@@ -198,8 +198,6 @@ function insertionSort(items) {
 }
 
 var array1 = [8, 5, 3, 4];
-console.log(insertionSort(array1))
-
 
 /*Escribe una funcion que toma una lista de strings e imprime linea por linea en un marco rectangular. 
 por ejemplo, para la lista ["Hello", "World", "in", "a", "frame"] se imprime:
@@ -216,25 +214,30 @@ function enmarcarArray(listaDePalabras) {
     let lengthMayor = 0
     for (let index = 0; index < listaDePalabras.length; index++) {
         let palabra = listaDePalabras[index];
-        lengthMayor = palabra.length ? palabra.length > lengthMayor : lengthMayor
+        lengthMayor = palabra.length > lengthMayor? palabra.length : lengthMayor
     }
     let marco = lengthMayor + 4
+    
     for (let index = 0; index < listaDePalabras.length; index++) {
-        let palabra = "* " + listaDePalabras[index];
-        let marcoFaltante = marco - palabra.length
-        for (let indexMarco = palabra.length; indexMarco < marcoFaltante - 1; indexMarco++) {
-            palabra = palabra + " "
+        let palabraNueva='';
+        let palabra =  listaDePalabras[index];
+        for (let indexMarco = 0; indexMarco < marco-4; indexMarco++) {
+            palabraNueva += palabra[indexMarco] ? palabra[indexMarco] : " ";
         }
-        palabra = palabra + "*"
-        listaDePalabras[index] = palabra
+        palabraNueva = "* " + palabraNueva + " *";
+        listaDePalabras[index] = palabraNueva;
     }
-    let marco_horizontal = ""
+    let marco_horizontal = "";
     for (let index = 0; index < marco; index++) {
-        marco_horizontal += "*"
+        marco_horizontal += "*";
 
     }
     listaDePalabras.push(marco_horizontal)
     listaDePalabras.unshift(marco_horizontal)
     return listaDePalabras
 }
-console.log(enmarcarArray(["Hello", "World", "in", "a", "frame"]));
+arrayEn=enmarcarArray(["Hello", "World", "in", "a", "frame"]);
+
+arrayEn.forEach(linea => {
+    console.log(linea)
+});
