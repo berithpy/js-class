@@ -224,7 +224,7 @@ function editStringInArray(array){
         } else if(absoluteStr > array[i].length){
            let difference = absoluteStr - array[i].length;
                 for(j = 0; j < difference - 2;j++){
-                    array[j]+= " ";
+                    array[i]+= " ";
                 }
             array[i]="*"+array[i]+"*"
             console.log(array[i]);
