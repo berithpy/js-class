@@ -204,32 +204,38 @@ console.log(insertionSort(array1));
 
 function saveLongestLength(array){
     let longerArrayLength = 0;
-    for (let i = 0; i < array.length-1; i++) {
+    for (let i = 0; i < array.length; i++) {
        if(array[i].length>longerArrayLength){
             longerArrayLength = array[i].length;
        }
     }return longerArrayLength
 }
-let arrayStrings = ["LongerString", "ShortStr","nasfiuasoifbgoasifbgiasbgoiasfbg","abc","defg"];
-console.log(saveLongestLength(arrayStrings));
-
-let absoluteStr = saveLongestLength(arrayStrings);
 
 //Agrega asteriscos y espacios
 function editStringInArray(array){
-    for (let i = 0; i < array.length-1; i++) {
-        if (absoluteStr == array[i].length) {
-            array[i] = "*" + array[i] + "*";
+    let absoluteStr = saveLongestLength(arrayStrings);
+    console.log(absoluteStr)
+    var filler = [];
+    for (let k = 0; k < absoluteStr+4; k++) {
+        filler.push("*");
+    }
+    console.log(filler.join(''));
+    for (let i = 0; i < array.length; i++) {
+        if (absoluteStr === array[i].length) {
+            array[i] = "* " + array[i] + " *";
             console.log(array[i]);
         } else if(absoluteStr > array[i].length){
            let difference = absoluteStr - array[i].length;
                 for(j = 0; j < difference;j++){
                     array[i]+= " ";
                 }
-            array[i]="*"+array[i]+"*"
+            array[i]="* "+array[i]+" *"
             console.log(array[i]);
         }        
     }
+    console.log(filler.join(''));
 }
-
-console.log(editStringInArray(arrayStrings));
+let arrayStrings = [];
+let stringToSplit = "Sanic is faster than KNUCKLES";
+arrayStrings = stringToSplit.split(" ");
+editStringInArray(arrayStrings);
