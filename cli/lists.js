@@ -213,25 +213,23 @@ function saveLongestLength(array){
 let arrayStrings = ["LongerString", "ShortStr","nasfiuasoifbgoasifbgiasbgoiasfbg","abc","defg"];
 console.log(saveLongestLength(arrayStrings));
 
-let x = saveLongestLength(arrayStrings);
+let absoluteStr = saveLongestLength(arrayStrings);
 
 //Agrega asteriscos y espacios
 function editStringInArray(array){
     for (let i = 0; i < array.length-1; i++) {
-        if (x == array[i].length) {
+        if (absoluteStr == array[i].length) {
             array[i] = "*" + array[i] + "*";
             console.log(array[i]);
-        } else if(x > array[i].length){
-           let difference = x - array[i].length;
+        } else if(absoluteStr > array[i].length){
+           let difference = absoluteStr - array[i].length;
                 for(j = 0; j < difference - 2;j++){
                     array[j]+= " ";
                 }
             array[i]="*"+array[i]+"*"
             console.log(array[i]);
-        }
-        
+        }        
     }
-
 }
 
 console.log(editStringInArray(arrayStrings));
