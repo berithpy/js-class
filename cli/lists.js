@@ -159,7 +159,7 @@ function arrayAlternado(arrayA, arrayB) {
 
 function intercambiar(array, posicion1, posicion2) {
     let valorTemporal = array[posicion1]
-    array[posicion1] = array [posicion2]
+    array[posicion1] = array[posicion2]
     array[posicion2] = valorTemporal
     return array
 }
@@ -185,14 +185,59 @@ function selectionSort(array) {
 
 function insertSort(array) {
     for (let pos1 = 0; pos1 < array.length; pos1++) {
-        for (let pos2 = pos1; pos2 >= 0 && array[pos2-1] > array[pos2]; pos2--) {
-            let variableTemporal = array[pos2-1];
-            array[pos2-1] = array[pos2];
+        for (let pos2 = pos1; pos2 >= 0 && array[pos2 - 1] > array[pos2]; pos2--) {
+            let variableTemporal = array[pos2 - 1];
+            array[pos2 - 1] = array[pos2];
             array[pos2] = variableTemporal;
         }
-        
+
     }
     return array;
 }
-var array1 = [8, 5, 3, 4];
-console.log(insertSort(array1))
+
+
+//Escribe una funcion que toma una lista de strings e imprime linea por linea en un marco rectangular. 
+//por ejemplo, para la lista ["Hello", "World", "in", "a", "frame"] se imprime:
+// *********
+// * Hello *
+// * World *
+// * in    *
+// * a     *
+// * frame *
+// ********* //
+
+
+function asteriscos(largo) {
+    let arrayDeAsteriscos = [];
+    for (let index = 0; index < largo; index++) {
+        arrayDeAsteriscos[index] = '*';
+        
+    }
+    let asteriscos = arrayDeAsteriscos.join('');
+    console.log(asteriscos)
+    
+}
+function marcoRectangular(arrayDePalabras) {
+    let largoPalabraMayor = 0;
+    for (let iDeLista = 0; iDeLista < arrayDePalabras.length; iDeLista++) {
+        let largoPalabraActual = arrayDePalabras[iDeLista].length;
+        if (largoPalabraActual > largoPalabraMayor) {
+            largoPalabraMayor = largoPalabraActual;
+        }
+    }   
+    asteriscos(largoPalabraMayor+4)
+    for (let iDeLista = 0; iDeLista < arrayDePalabras.length; iDeLista++) {
+        let palabra = arrayDePalabras[iDeLista].split("");
+        let diferenciaDeLargor= largoPalabraMayor - palabra.length;        
+        if (diferenciaDeLargor > 0) {
+            for (let index = palabra.length; index < largoPalabraMayor; index++) {
+                palabra.push(" ");
+            }                       
+        }
+        arrayDePalabras[iDeLista] =palabra.join('');  
+        console.log('*',arrayDePalabras[iDeLista],'*');   
+    }
+    asteriscos(largoPalabraMayor+4);
+}
+
+marcoRectangular(['Diego', 'Argelandro', 'Diaz', 'Matousek'])
