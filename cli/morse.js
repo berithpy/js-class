@@ -51,9 +51,12 @@ function menuPrincipal() {
         console.log(resultado)
         console.log('\n')
     } 
+    console.log(`Separador ${separador}`);
+
     console.log("1. Morse → Español");
     console.log("2. Español → Morse");
     console.log("3. Definir Separador");
+    console.log("4. Prueba");    
     console.log("5. Salir");
     const option = Number(readlineSync.question(""));
     switch (option) {
