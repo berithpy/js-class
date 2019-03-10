@@ -25,11 +25,6 @@ function latinAlphabetToMorse(string) {
     return string
 }
 
-//console.log(latinAlphabetToMorse(testString));
-
-//morseString = latinAlphabetToMorse(testString);
-//morseArray = morseString.split(" ");
-
 function morseToLatinAlphabet(morseToPhrase) {
     morseToPhrase = morseToPhrase.split(" ")
     for (let index = 0; index < morseToPhrase.length; index++) {
@@ -42,9 +37,6 @@ function morseToLatinAlphabet(morseToPhrase) {
     return morseToPhrase.join("");
 }
 
-//console.log(morseArray);
-
-//console.log(morseToLatinAlphabet(morseArray));
 
 function menu (){
     console.log("Converter: Spanish Alphabet to Morse - Morse to Spanish Alphabet");
