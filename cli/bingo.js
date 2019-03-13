@@ -6,7 +6,7 @@ function bingo() {
     //generate bingo card
     //display bingo card
     //make each row a separate array
-    //generate numbers and put into array, making sure they don't have the same tens
+    //generate numbers and put into array
     //roll and compare to array
     //check each row after each roll
     //change visually a cell if a number is the same than the one called
@@ -32,24 +32,94 @@ function bingoCardGenerator() {
     bingoRow3 = new Array(9).fill("x");
 }
 
-function arrayFiller(array) {
+function arrayFillerRow1(array) {
     for (let index = 0; index < array.length; index++) {
-        if (array[index] === "x" && index === 0) {
+        if (index === 0) {
             array[index] = getRandomInt(1, 9);
-        } else if (array[index] === "x" && index != 8) {
+        } else if (index != 8) {
             array[index] = getRandomInt(index * 10, index * 10 + 9);
-        } else if (array[index] === "x" && index == 8) {
+        } else if (index == 8) {
             array[index] = getRandomInt(index * 10, index * 10 + 10);
         }
     }
     return array
 }
 
-function compareArray(){
-    
+function arrayFillerRow2(array) {
 
-};
+    for (let index = 0; index < array.length; index++) {
+        if (index === 0) {
+            do {
+                array[index] = getRandomInt(1, 9);
+            } while (array[index] === bingoRow1[index]);
 
+        } else if (index != 8) {
+            do {
+                array[index] = getRandomInt(index * 10, index * 10 + 9);
+            } while (array[index] === bingoRow1[index]);
+
+        } else if (index == 8) {
+            do {
+                array[index] = getRandomInt(index * 10, index * 10 + 10);
+            } while (array[index] === bingoRow1[index]);
+        }
+    }
+    return array
+}
+
+function arrayFillerRow3(array) {
+
+    for (let index = 0; index < array.length; index++) {
+        if (index === 0) {
+            do {
+                array[index] = getRandomInt(1, 9);
+            } while (array[index] === bingoRow1[index] || array[index] === bingoRow2[index]);
+
+        } else if (index != 8) {
+            do {
+                array[index] = getRandomInt(index * 10, index * 10 + 9);
+            } while (array[index] === bingoRow1[index] || array[index] === bingoRow2[index]);
+
+        } else if (index == 8) {
+            do {
+                array[index] = getRandomInt(index * 10, index * 10 + 10);
+            } while (array[index] === bingoRow1[index] || array[index] === bingoRow2[index]);
+        }
+    }
+    return array
+}
+
+
+function randIndexGenerator() {
+    let randIndexes = [];
+
+    do {
+        for (let index = 0; index < 3; index++) {
+            randIndexes[index] = getRandomInt(0, 8);
+        }
+    } while (randIndexes[0] === randIndexes[1] || randIndexes[0] === randIndexes[2] || randIndexes[1] === randIndexes[2]);
+    return randIndexes
+}
+
+//console.log("randIndexes:"+randIndexGenerator());
+//console.log("randIndexes:"+randIndexGenerator());
+//console.log("randIndexes:"+randIndexGenerator());
+
+
+//gen 3 numbers, all different
+//if row index is same than randIndex value, replace rowValue for separator
+
+function rowCellBlanker(bingoRow) {
+    let randIndexes = randIndexGenerator();
+    for (let index = 0; index < bingoRow.length; index++) {
+        for (let index2 = 0; index2 < randIndexes.length; index2++) {
+            if (index === randIndexes[index2]) {
+                bingoRow[index] = "#";
+            }
+        }
+    }
+
+}
 
 
 function bingoCardDisplay() {
@@ -69,9 +139,12 @@ function menu() {
         case 1:
             console.log("Bingo Start");
             bingoCardGenerator();
-            arrayFiller(bingoRow1);
-            arrayFiller(bingoRow2);
-            arrayFiller(bingoRow3);
+            arrayFillerRow1(bingoRow1);
+            arrayFillerRow2(bingoRow2);
+            arrayFillerRow3(bingoRow3);
+            rowCellBlanker(bingoRow1);
+            rowCellBlanker(bingoRow2);
+            rowCellBlanker(bingoRow3);
             bingoCardDisplay();
             break;
 
