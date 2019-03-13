@@ -101,13 +101,23 @@ function randIndexGenerator() {
     return randIndexes
 }
 
-//console.log("randIndexes:"+randIndexGenerator());
-//console.log("randIndexes:"+randIndexGenerator());
-//console.log("randIndexes:"+randIndexGenerator());
+
+listOfBalls = [];
+function ballsGenerator() {
+    let ballDrop = getRandomInt(1, 10);
+    if (listOfBalls.length>=10){
+        return console.log("No more balls left, game over");
+    } 
+    else if (listOfBalls.indexOf(ballDrop) === -1) {
+        listOfBalls.push(ballDrop);
+        flag = true;
+    }
+    else{
+        ballsGenerator();
+    }
+}
 
 
-//gen 3 numbers, all different
-//if row index is same than randIndex value, replace rowValue for separator
 
 function rowCellBlanker(bingoRow) {
     let randIndexes = randIndexGenerator();
@@ -146,6 +156,8 @@ function menu() {
             rowCellBlanker(bingoRow2);
             rowCellBlanker(bingoRow3);
             bingoCardDisplay();
+            ballsGenerator();
+            console.log(listOfBalls);
             break;
 
         case 2:
