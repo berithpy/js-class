@@ -213,19 +213,19 @@ function saveLongestLength(array){
 
 //Agrega asteriscos y espacios
 function editStringInArray(array){
-    let absoluteStr = saveLongestLength(arrayStrings);
-    console.log(absoluteStr)
+    let longerStrSize = saveLongestLength(array);
+    console.log(longerStrSize)
     var filler = [];
-    for (let k = 0; k < absoluteStr+4; k++) {
+    for (let k = 0; k < longerStrSize+4; k++) {
         filler.push("*");
     }
     console.log(filler.join(''));
     for (let i = 0; i < array.length; i++) {
-        if (absoluteStr === array[i].length) {
+        if (longerStrSize === array[i].length) {
             array[i] = "* " + array[i] + " *";
             console.log(array[i]);
-        } else if(absoluteStr > array[i].length){
-           let difference = absoluteStr - array[i].length;
+        } else if(longerStrSize > array[i].length){
+           let difference = longerStrSize - array[i].length;
                 for(j = 0; j < difference;j++){
                     array[i]+= " ";
                 }
