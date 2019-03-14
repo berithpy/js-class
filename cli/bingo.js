@@ -12,6 +12,7 @@ function bingo() {
     //change visually a cell if a number is the same than the one called
     //if 5 in a row are the same as the numbers called, BINGO BANGUERZ
 }
+
 //let randNumber;
 //
 //while (randNumber != 0) {
@@ -24,7 +25,6 @@ function getRandomInt(min, max) {
     let maxC = max + 1
     return Math.floor(Math.random() * (maxC - min)) + min;
 }
-
 
 function bingoCardGenerator() {
     bingoRow1 = new Array(9).fill("x");
@@ -89,6 +89,11 @@ function arrayFillerRow3(array) {
     return array
 }
 
+function arrayFillerCard(){
+    arrayFillerRow1(bingoRow1);
+    arrayFillerRow2(bingoRow2);
+    arrayFillerRow3(bingoRow3);
+}
 
 function randIndexGenerator() {
     let randIndexes = [];
@@ -105,18 +110,17 @@ function randIndexGenerator() {
 listOfBalls = [];
 function ballsGenerator() {
     let ballDrop = getRandomInt(1, 10);
-    if (listOfBalls.length>=10){
-        return console.log("No more balls left, game over");
-    } 
+    if (listOfBalls.length >= 10) {
+        console.clear();
+        return console.log("No balls left, game over!");
+    }
     else if (listOfBalls.indexOf(ballDrop) === -1) {
         listOfBalls.push(ballDrop);
-        flag = true;
     }
-    else{
+    else {
         ballsGenerator();
     }
 }
-
 
 
 function rowCellBlanker(bingoRow) {
@@ -131,6 +135,49 @@ function rowCellBlanker(bingoRow) {
 
 }
 
+function cardCellBlanker(){
+    rowCellBlanker(bingoRow1);
+    rowCellBlanker(bingoRow2);
+    rowCellBlanker(bingoRow3);
+
+}
+
+// gen a number in listOfBalls
+// compare with each element of each row
+// if it matches, point out in card, bingoCellCounter++
+// if one row's bingoCellCounter reaches 5, it's one line; bingoLineCounter++
+// if bingoLineCounter reaches 2, it's two lines
+// if bingoLineCounter reaches 3, it's BINGO BONGO
+bingoCellCounter = 0;
+bingoLineCounter = 0;
+function checkRowWithList(bingoRow) {
+    let bingoCellCounter = 0;
+    for (let index = 0; index < bingoRow.length; index++) {
+        if (bingoRow[index] === listOfBalls[listOfBalls.length - 1]) {
+            bingoRow[index] = "-" + bingoRow[index] + "-";
+            bingoCellCounter++;
+            if (bingoCellCounter = 5 && bingoLineCounter = 0) {
+                console.log("One Row Completed! Two to go");
+                bingoLineCounter++;
+            } else if(bingoCellCounter = 5 && bingoLineCounter = 1){
+                console.log("Two Rows Completed! Only one more to go")
+            } else if(bingoCellCounter = 5 && bingoLineCounter = 2){
+                console.log("81N6O 84N60!!")
+                
+            }
+        }
+    }
+}
+
+function checkCardWithList(){
+    checkRowWithList(bingoRow1);
+    checkRowWithList(bingoRow2);
+    checkRowWithList(bingoRow3);
+    if (bingoCounter = 15){
+        return console.log("BINGO BONGO")
+    }
+}
+
 
 function bingoCardDisplay() {
     console.log(bingoRow1);
@@ -142,22 +189,19 @@ function bingoCardDisplay() {
 function menu() {
     console.log("Bingo Banguerz");
     console.log("1. Start Game");
-    console.log("2. Exit");
+    console.log("2. Exit\n");
 
     userInput = Number(readlineSync.question(""));
     switch (userInput) {
         case 1:
             console.log("Bingo Start");
-            bingoCardGenerator();
-            arrayFillerRow1(bingoRow1);
-            arrayFillerRow2(bingoRow2);
-            arrayFillerRow3(bingoRow3);
-            rowCellBlanker(bingoRow1);
-            rowCellBlanker(bingoRow2);
-            rowCellBlanker(bingoRow3);
-            bingoCardDisplay();
-            ballsGenerator();
-            console.log(listOfBalls);
+            bingoCardGenerator();           //gen 3 rows of bingo card
+            arrayFillerCard();              //fill values for each row
+            cardCellBlanker()               //blank 4 out of 9 cells of each row
+            bingoCardDisplay();             //print out Bingo Card
+            checkCardWithList();            //check all rows with the last element on the balls list, also checks for points
+            ballsGenerator();               //list of balls generator, to compare with card
+            console.log(listOfBalls);       //test for list
             break;
 
         case 2:
