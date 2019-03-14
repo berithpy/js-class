@@ -35,24 +35,35 @@ console.log(bingoCard[1][1].length);
 
 bingoCardArray = [];
 function bingoCardFiller(bingoCard) {
+    let randNumber = 0;
     for (rowIndex = 0; rowIndex < 3; rowIndex++) {
         for (columnIndex = 0; columnIndex < 9; columnIndex++) {
             if (columnIndex === 0) {
                 do {
-                    bingoCard[rowIndex][columnIndex] = getRandomInt(1, 9);
-                    bingoCardArray.push(bingoCard[rowIndex][columnIndex]);
-                } while (bingoCardArray.indexOf(bingoCard[rowIndex][columnIndex]) === -1);
+                    randNumber = getRandomInt(1, 9);
+                    if (bingoCardArray.indexOf(randNumber) === -1) {
+                        bingoCardArray.push(randNumber);
+                        bingoCard[rowIndex][columnIndex] = randNumber;
+                    }
+                } while (bingoCardArray.indexOf(randNumber) === -1 || typeof bingoCard[rowIndex][columnIndex] !== 'number');
+
             } else if (columnIndex > 0 && columnIndex < 8) {
                 do {
-                    bingoCard[rowIndex][columnIndex] = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
-                    bingoCardArray.push(bingoCard[rowIndex][columnIndex]);
-                } while (bingoCardArray.indexOf(bingoCard[rowIndex][columnIndex]) === -1);
+                    randNumber = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
+                    if (bingoCardArray.indexOf(randNumber) === -1) {
+                        bingoCardArray.push(randNumber);
+                        bingoCard[rowIndex][columnIndex] = randNumber;
+                    }
+                } while (bingoCardArray.indexOf(randNumber) === -1 || typeof bingoCard[rowIndex][columnIndex] !== 'number');
 
             } else if (columnIndex == 8) {
                 do {
-                    bingoCard[rowIndex][columnIndex] = getRandomInt(columnIndex * 10, columnIndex * 10 + 10);
-                    bingoCardArray.push(bingoCard[rowIndex][columnIndex]);
-                } while (bingoCardArray.indexOf(bingoCard[rowIndex][columnIndex]) === -1);
+                    randNumber = getRandomInt(columnIndex * 10, columnIndex * 10 + 10);
+                    if (bingoCardArray.indexOf(randNumber) === -1) {
+                        bingoCardArray.push(randNumber);
+                        bingoCard[rowIndex][columnIndex] = randNumber;
+                    }
+                } while (bingoCardArray.indexOf(randNumber) === -1 || typeof bingoCard[rowIndex][columnIndex] !== 'number');
             }
         }
     }
@@ -62,4 +73,18 @@ function bingoCardFiller(bingoCard) {
 bingoCardFiller(bingoCard);
 
 console.log(bingoCardFiller(bingoCard));
+console.log(bingoCard);
+//console.log(bingoCardArray);
+
+//creates 4 random different numbers between 0 and 8, to be used in cellsBlanker()
+function randIndexGenerator() {
+    let randIndexes = [];
+    while (randIndexes.length < 5) {
+        let randNumber = getRandomInt(0, 8);
+        if(randIndexes.indexOf(randNumber) === -1){
+            randIndexes.push(randNumber);
+        }
+    }
+    return randIndexes
+}
 
