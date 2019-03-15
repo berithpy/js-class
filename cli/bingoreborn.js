@@ -2,7 +2,7 @@ const readlineSync = require('readline-sync');
 
 function bingo() {
     bingoCardGenerator();           //gen 3 rows of bingo card
-    arrayFillerCard();              //fill values for each row
+    bingoCardFiller();              //fill unique values for each cell
     cardCellBlanker()               //blank 4 out of 9 cells of each row
     bingoCardDisplay();             //print out Bingo Card
     checkCardWithList();            //check all rows with the last element on the balls list, also checks for points
@@ -29,30 +29,32 @@ function bingoCardGenerator() {
 
 
 bingoCardGenerator();
-console.log(bingoCard[0].length);
 
-console.log(bingoCard[1][1].length);
-
-bingoCardArray = [];
 function bingoCardFiller(bingoCard) {
+    bingoCardArray = [];
+    let randNumber = 0;
     for (rowIndex = 0; rowIndex < 3; rowIndex++) {
         for (columnIndex = 0; columnIndex < 9; columnIndex++) {
             if (columnIndex === 0) {
                 do {
-                    bingoCard[rowIndex][columnIndex] = getRandomInt(1, 9);
-                    bingoCardArray.push(bingoCard[rowIndex][columnIndex]);
-                } while (bingoCardArray.indexOf(bingoCard[rowIndex][columnIndex]) === -1);
+                    randNumber = getRandomInt(1, 9);
+                } while (bingoCardArray.indexOf(randNumber) !== -1);
+                bingoCardArray.push(randNumber);
+                bingoCard[rowIndex][columnIndex] = randNumber;
+
             } else if (columnIndex > 0 && columnIndex < 8) {
                 do {
-                    bingoCard[rowIndex][columnIndex] = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
-                    bingoCardArray.push(bingoCard[rowIndex][columnIndex]);
-                } while (bingoCardArray.indexOf(bingoCard[rowIndex][columnIndex]) === -1);
+                    randNumber = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
+                } while (bingoCardArray.indexOf(randNumber) !== -1);
+                bingoCardArray.push(randNumber);
+                bingoCard[rowIndex][columnIndex] = randNumber;
 
             } else if (columnIndex == 8) {
                 do {
-                    bingoCard[rowIndex][columnIndex] = getRandomInt(columnIndex * 10, columnIndex * 10 + 10);
-                    bingoCardArray.push(bingoCard[rowIndex][columnIndex]);
-                } while (bingoCardArray.indexOf(bingoCard[rowIndex][columnIndex]) === -1);
+                    randNumber = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
+                } while (bingoCardArray.indexOf(randNumber) !== -1);
+                bingoCardArray.push(randNumber);
+                bingoCard[rowIndex][columnIndex] = randNumber;
             }
         }
     }
@@ -62,4 +64,42 @@ function bingoCardFiller(bingoCard) {
 bingoCardFiller(bingoCard);
 
 console.log(bingoCardFiller(bingoCard));
+
+console.log(bingoCardArray);
+
+
+//creates 4 random different numbers between 0 and 8, to be used in rowCellBlanker()
+function randIndexGenerator() {
+    let randIndexes = [];
+    let randNumber = 0;
+    while (randIndexes.length < 4) {
+        do {
+            randNumber = getRandomInt(0, 8);
+        } while (randIndexes.indexOf(randNumber) !== -1);
+        randIndexes.push(randNumber);
+    }
+    return randIndexes
+}
+
+console.log(randIndexGenerator());
+
+//each call generates a number that is not in the list yet, and pushes it to listOfBalls[], within range
+listOfBalls = [];
+function ballsGenerator() {
+    let ballDrop = getRandomInt(1, 10);
+    if (listOfBalls.length >= 10) {
+        console.clear();
+        console.log(listOfBalls);
+        return console.log("No balls left, game over!");
+    }
+    else if (listOfBalls.indexOf(ballDrop) === -1) {
+        listOfBalls.push(ballDrop);
+        console.log(listOfBalls);
+    }
+    else {
+        ballsGenerator();
+    }
+}
+
+
 
