@@ -1,12 +1,12 @@
 const readlineSync = require('readline-sync');
 
 function bingo() {
-    bingoCardGenerator();           //gen 3 rows of bingo card
-    bingoCardFiller();              //fill unique values for each cell
-    cardCellBlanker()               //blank 4 out of 9 cells of each row
-    bingoCardDisplay();             //print out Bingo Card
-    checkCardWithList();            //check all rows with the last element on the balls list, also checks for points
+    // bingoCardGenerator();           //gen 3 rows of bingo card
+    // bingoCardFiller(bingoCard);              //fill unique values for each cell
+    // cardCellBlanker()               //blank 4 out of 9 cells of each row
     ballsGenerator();               //list of balls generator, to compare with card
+    checkCardWithList(bingoCard, listOfBalls);            //check all rows with the last element on the balls list
+    bingoCardDisplay();             //print out Bingo Card
 }
 
 //random number generator, takes min and max for range of output 
@@ -27,8 +27,12 @@ function bingoCardGenerator() {
     return bingoCard
 }
 
+function bingoCardDisplay() {
+    console.log(bingoCard);
+}
 
-bingoCardGenerator();
+
+//bingoCardGenerator();
 
 function bingoCardFiller(bingoCard) {
     bingoCardArray = [];
@@ -61,14 +65,14 @@ function bingoCardFiller(bingoCard) {
     return bingoCard
 }
 
-bingoCardFiller(bingoCard);
+//bingoCardFiller(bingoCard);
 
-console.log(bingoCardFiller(bingoCard));
+//console.log(bingoCardFiller(bingoCard));
 
-console.log(bingoCardArray);
+//console.log(bingoCardArray);
 
 
-//creates 4 random different numbers between 0 and 8, to be used in rowCellBlanker()
+//creates 4 random different numbers between 0 and 8, to be used in cardCellBlanker()
 function randIndexGenerator() {
     let randIndexes = [];
     let randNumber = 0;
@@ -81,25 +85,71 @@ function randIndexGenerator() {
     return randIndexes
 }
 
-console.log(randIndexGenerator());
+//console.log(randIndexGenerator());
 
 //each call generates a number that is not in the list yet, and pushes it to listOfBalls[], within range
 listOfBalls = [];
 function ballsGenerator() {
-    let ballDrop = getRandomInt(1, 10);
-    if (listOfBalls.length >= 10) {
+    let ballDrop = getRandomInt(1, 90);
+    if (listOfBalls.length >= 90) {
         console.clear();
-        console.log(listOfBalls);
-        return console.log("No balls left, game over!");
+        console.log(bingoCard);
+        //console.log(listOfBalls);
+        return console.log("No balls left, game is (probably) over!");
     }
     else if (listOfBalls.indexOf(ballDrop) === -1) {
         listOfBalls.push(ballDrop);
-        console.log(listOfBalls);
+        //console.log(listOfBalls);
     }
     else {
         ballsGenerator();
     }
 }
 
+//ballsGenerator();
+
+//this was to check each element in bingoCard[][] with latest addition in listOfBalls[], but 
+//might be best to check all the list each call? CHECKPLS
+
+function checkCardWithList(bingoCard, listOfBalls) {
+    for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
+        for (let columnIndex = 0; columnIndex < 9; columnIndex++) {
+            if (bingoCard[rowIndex][columnIndex] === listOfBalls[listOfBalls.length - 1]) {
+                bingoCard[rowIndex][columnIndex] = "-" + bingoCard[rowIndex][columnIndex] + "-";
+            }
+        }
+    }
+}
+
+bingoCardGenerator();
+bingoCardFiller(bingoCard);
+
+function menu() {
+    console.log("🎰  Bingo Banguerz 🎰 \n");
+    console.log("1. Start Game");
+    console.log("2. Exit\n");
+
+    userInput = Number(readlineSync.question(">> "));
+    switch (userInput) {
+        case 1:
+            console.log("Bingo Start");
+            bingo();
+            console.log("listOfBalls test: " + listOfBalls);       //test for listOfBalls
+            console.log("listOfBalls length: " + listOfBalls.length)
+            break;
+
+        case 2:
+            running = false;
+            break;
+
+        default:
+            console.log("Invalid input, try again");
+            break;
+    }
+}
 
 
+let running = true;
+while (running) {
+    menu();
+}
