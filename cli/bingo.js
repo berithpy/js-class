@@ -64,7 +64,19 @@ function generadorDeBolillas() {
   return arrayDeBolillas;
 }
 
-
+//lanzar bolillas
+function lanzarBolillas() {
+  array = generadorDeBolillas();
+  for (let index = 1; index < array.length; index++) {
+    clearConsole();
+    console.log('La bolilla lanzada es:');
+    console.log(array[index]);
+    if (index < array.length-1) {
+      readlineSync.question('Presione enter para lanzar la siguiente.\n');      
+    }
+  }
+  console.log('Ya no quedan bolillas por lanzar.');
+}
 
 //Marca los numeros que coincidan entre las bolillas y el carton con el emoticon 😎
 // fila carton es un array
@@ -172,7 +184,8 @@ function menu() {
   console.log('Bienvenido a BingoBongo!!! \nQue desea hacer?');
   console.log('1. Jugar.');
   console.log('2. Imprimir Carton.')
-  console.log('3. Salir.')
+  console.log('3. Lanzar Bolillas al azar.')
+  console.log('4. Salir.')
   let opcion = readlineSync.question('');
   switch (opcion) {
     case '1':
@@ -182,6 +195,9 @@ function menu() {
       imprimirCarton(generadorDeCarton());
       break;
     case '3':
+      lanzarBolillas();
+      break
+    case '4':
       salir(true);
       break
     default:
