@@ -88,7 +88,8 @@ function jugar() {
       let fila = reemplazarNumeroAcertado(cartonEnCrudo[index], bolilla);
       bingo[index] = verificador(fila);
     }
-    interfazCarton(bingo, bolilla, cartonEnCrudo)
+    interfazCarton(bingo, bolilla, cartonEnCrudo);
+    readlineSync.question('');
   }
 }
 
@@ -107,23 +108,27 @@ function verificador(filaCarton) {
   return false;
 }
 
+//Muestra el bingo y hace el carton mas lindo
 function interfazCarton(bingo, bolilla, carton) {
+  clearConsole();
   console.log('Bolilla actual: ', bolilla);
   imprimirCarton(carton);
   puntosHechos(bingo);
-  console.log('Presione la tecla Enter para lanzar otra bolilla');
 }
+
+//imprime el Carton
 function imprimirCarton(carton) {
   let lineasHorizontalesDelMarco = ''
   for (let index = 0; index < 27; index++) {
     lineasHorizontalesDelMarco += '-';
   }
   let cartonString = carton.join('\n');
-  console.log(lineasHorizontalesDelMarco)
+  console.log(lineasHorizontalesDelMarco);
   console.log(cartonString);
-  console.log(lineasHorizontalesDelMarco)
+  console.log(lineasHorizontalesDelMarco);
 }
 
+//indica si hiciste linea - doble linea o Bingo
 function puntosHechos(bingo) {
   let c = 0
   for (let index = 0; index < bingo.length; index++) {
@@ -139,10 +144,49 @@ function puntosHechos(bingo) {
   }
   else if (c === 3) {
     console.log('Bingo Bongoo!! Ganaste!!');
+    console.log('Muchas Felicidades!!!');
+    console.log('Haz finalizado esta partida');
   }
-  else {
-    console.log('Sigue intentando!!');
+  if (c != 3) {
+    console.log('Presione la tecla Enter para lanzar otra bolilla');
   }
 }
 
-jugar();
+//funcion para salir del juego
+function salir(stop = true) {
+  while (!stop) {
+    menu();
+  }
+}
+
+//limpia la consola
+function clearConsole() {
+  console.log('\033[2J');
+}
+
+
+
+//Menu del bingo
+function menu() {
+  clearConsole();
+  console.log('Bienvenido a BingoBongo!!! \nQue desea hacer?');
+  console.log('1. Jugar.');
+  console.log('2. Imprimir Carton.')
+  console.log('3. Salir.')
+  let opcion = readlineSync.question('');
+  switch (opcion) {
+    case '1':
+      jugar();
+      break
+    case '2':
+      imprimirCarton(generadorDeCarton());
+      break;
+    case '3':
+      salir(true);
+      break
+    default:
+      console.log('Favor intente otra opcion');
+  }
+}
+
+menu();
