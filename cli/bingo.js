@@ -28,7 +28,7 @@ function generadorNumeros(min, max, largo = 3, ordenado = true) {
 
 //Genera la primera y la ultima decena -- lo hicimos de esta forma ya que la ultima decena tiene 1 numero de mas
 function rellenadorDecenas(min, max, posicion, arrayA, arrayB, arrayC) {
-  numGenerado = generadorNumeros(min, max);
+  let numGenerado = generadorNumeros(min, max);
   arrayA[posicion] = numGenerado[0];
   arrayB[posicion] = numGenerado[1];
   arrayC[posicion] = numGenerado[2];
