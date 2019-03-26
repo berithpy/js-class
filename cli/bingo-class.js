@@ -21,6 +21,10 @@ function generadorNumeros(min, max, largo = 3, ordenado = true) {
   }
 }
 
+function clearConsole() {
+  console.log('\033[2J');
+}
+
 
 class CartondeBingo {
   constructor() {
@@ -56,42 +60,7 @@ class CartondeBingo {
     let arrayRespuesta = [this.generarPosiciones(arrayA), this.generarPosiciones(arrayB), this.generarPosiciones(arrayC)];
     this.carton = arrayRespuesta;
   };
-  //Verifica los aciertos x linea
-  verificador(filaCarton) {
-    let contadorAciertos = 0
-    for (let index = 0; index < this.carton[filaCarton].length; index++) {
-      if (filaCarton[index] === acierto) {
-        contadorAciertos += 1;
-      }
-    }
-    if (contadorAciertos === 5) {
-      this.arrayVerificadorBingo[filaCarton] = true;
-    }
-    this.arrayVerificadorBingo[filaCarton] = false;
-  };
-  //Cuenta en cuantas filas ganaste
-  puntosHechos() {
-    let c = 0
-    for (let index = 0; index < this.arrayVerificadorBingo.length; index++) {
-      if (rrayVerificadorBingo[index] === true) {
-        c += 1
-      }
-    }
-    if (c === 1) {
-      console.log('Has completado 1 linea!!');
-    }
-    else if (c === 2) {
-      console.log('Has completado 2 lineas!! Ya falta poco!!');
-    }
-    else if (c === 3) {
-      console.log('Bingo Bongoo!! Ganaste!!');
-      console.log('Muchas Felicidades!!!');
-      console.log('Haz finalizado esta partida');
-    }
-    if (c != 3) {
-      console.log('Presione la tecla Enter para lanzar otra bolilla');
-    }
-  };
+
   //imprime el carton
   imprimirCarton() {
     let lineasHorizontalesDelMarco = ''
@@ -107,3 +76,78 @@ class CartondeBingo {
 let cp = new CartondeBingo()
 cp.imprimirCarton();
 
+class BolilladeBingo {
+  constructor() {
+    this.bolillero = [];
+    
+  };
+  generadorDeBolillas() {
+    let arrayDeBolillas = generadorNumeros(1, 90, 90, false);
+    return arrayDeBolillas;
+  };
+  lanzarBolillas() {
+    let array = this.generadorDeBolillas();
+    for (let index = 1; index < array.length; index++) {
+      console.log('La bolilla lanzada es:');
+      console.log(array[index]);
+      if (index < array.length - 1) {
+        readlineSync.question('Presione enter para lanzar la siguiente.\n');
+      }
+    }
+    console.log('Ya no quedan bolillas por lanzar.');
+  };
+  
+}
+
+let bp = new BolilladeBingo();
+bp.lanzarBolillas();
+
+/*Verifica los aciertos x linea
+verificador(filaCarton) {
+  let contadorAciertos = 0
+  for (let index = 0; index < this.carton[filaCarton].length; index++) {
+    if (filaCarton[index] === acierto) {
+      contadorAciertos += 1;
+    }
+  }
+  if (contadorAciertos === 5) {
+    this.arrayVerificadorBingo[filaCarton] = true;
+  }
+  this.arrayVerificadorBingo[filaCarton] = false;
+};
+
+//reemplaza numeros acertados
+reemplazarNumeroAcertado(filaCarton, bolilla) {
+  let indiceNroSorteado = filaCarton.indexOf(bolilla);
+  if (indiceNroSorteado > -1) {
+    filaCarton[indiceNroSorteado] = acierto;
+  }
+  return filaCarton;
+};  
+
+Cuenta en cuantas filas ganaste
+puntosHechos() {
+  let c = 0
+  for (let index = 0; index < this.arrayVerificadorBingo.length; index++) {
+    if (arrayVerificadorBingo[index] === true) {
+      c += 1
+    }
+  }
+  if (c === 1) {
+    console.log('Has completado 1 linea!!');
+  }
+  else if (c === 2) {
+    console.log('Has completado 2 lineas!! Ya falta poco!!');
+  }
+  else if (c === 3) {
+    console.log('Bingo Bongoo!! Ganaste!!');
+    console.log('Muchas Felicidades!!!');
+    console.log('Haz finalizado esta partida');
+  }
+  if (c != 3) {
+    console.log('Presione la tecla Enter para lanzar otra bolilla');
+  }
+};
+
+let bolilla = new BolilladeBingo();
+console.log(bolilla);*/
