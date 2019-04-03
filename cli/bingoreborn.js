@@ -35,32 +35,21 @@ function bingoCardDisplay() {
 //bingoCardGenerator();
 
 function bingoCardFiller(bingoCard) {
-<<<<<<< HEAD
-=======
-    bingoCardArray = [];
->>>>>>> 6a94a09611d83feb28e335d00449f5152eaef0b2
     let randNumber = 0;
     for (rowIndex = 0; rowIndex < 3; rowIndex++) {
         for (columnIndex = 0; columnIndex < 9; columnIndex++) {
             if (columnIndex === 0) {
                 do {
                     randNumber = getRandomInt(1, 9);
-<<<<<<< HEAD
                     if (bingoCardArray.indexOf(randNumber) === -1) {
                         bingoCardArray.push(randNumber);
                         bingoCard[rowIndex][columnIndex] = randNumber;
                     }
                 } while (bingoCardArray.indexOf(randNumber) === -1 || typeof bingoCard[rowIndex][columnIndex] !== 'number');
-=======
-                } while (bingoCardArray.indexOf(randNumber) !== -1);
-                bingoCardArray.push(randNumber);
-                bingoCard[rowIndex][columnIndex] = randNumber;
->>>>>>> 6a94a09611d83feb28e335d00449f5152eaef0b2
 
             } else if (columnIndex > 0 && columnIndex < 8) {
                 do {
                     randNumber = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
-<<<<<<< HEAD
                     if (bingoCardArray.indexOf(randNumber) === -1) {
                         bingoCardArray.push(randNumber);
                         bingoCard[rowIndex][columnIndex] = randNumber;
@@ -75,18 +64,6 @@ function bingoCardFiller(bingoCard) {
                         bingoCard[rowIndex][columnIndex] = randNumber;
                     }
                 } while (bingoCardArray.indexOf(randNumber) === -1 || typeof bingoCard[rowIndex][columnIndex] !== 'number');
-=======
-                } while (bingoCardArray.indexOf(randNumber) !== -1);
-                bingoCardArray.push(randNumber);
-                bingoCard[rowIndex][columnIndex] = randNumber;
-
-            } else if (columnIndex == 8) {
-                do {
-                    randNumber = getRandomInt(columnIndex * 10, columnIndex * 10 + 9);
-                } while (bingoCardArray.indexOf(randNumber) !== -1);
-                bingoCardArray.push(randNumber);
-                bingoCard[rowIndex][columnIndex] = randNumber;
->>>>>>> 6a94a09611d83feb28e335d00449f5152eaef0b2
             }
         }
     }
@@ -152,7 +129,6 @@ function checkCardWithList(bingoCard, listOfBalls) {
 bingoCardGenerator();
 bingoCardFiller(bingoCard);
 
-<<<<<<< HEAD
 console.log(bingoCardFiller(bingoCard));
 console.log(bingoCard);
 //console.log(bingoCardArray);
@@ -168,32 +144,6 @@ function randIndexGenerator() {
     }
     return randIndexes
 }
-=======
-function menu() {
-    console.log("🎰  Bingo Banguerz 🎰 \n");
-    console.log("1. Start Game");
-    console.log("2. Exit\n");
-
-    userInput = Number(readlineSync.question(">> "));
-    switch (userInput) {
-        case 1:
-            console.log("Bingo Start");
-            bingo();
-            console.log("listOfBalls test: " + listOfBalls);       //test for listOfBalls
-            console.log("listOfBalls length: " + listOfBalls.length)
-            break;
-
-        case 2:
-            running = false;
-            break;
-
-        default:
-            console.log("Invalid input, try again");
-            break;
-    }
-}
-
->>>>>>> 6a94a09611d83feb28e335d00449f5152eaef0b2
 
 let running = true;
 while (running) {
