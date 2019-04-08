@@ -3,7 +3,6 @@ class Animal {
     this.nombre = nombre;
     this.patas = patas;
     this.color = color;
-    
   };
   informacion() {
     return `Este animal se llama ${this.nombre} tiene ${this.patas} patas, es de color ${this.color}`
